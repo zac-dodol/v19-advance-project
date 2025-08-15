@@ -1,0 +1,56 @@
+<div class="p-4">
+  <h1 class="text-2xl font-bold text-indigo-700 mb-4">Angular v19 Demo</h1>
+
+  <!-- Signal binding -->
+  <p>Total items: {{ cart.items().length }}</p>
+  <p>Total price: ${{ cart.total() }}</p>
+
+  <!-- RxJS cold observable -->
+  <p>
+    Current time (cold via async):
+    {{ cart.time$ | async | date : "mediumTime" }}
+  </p>
+
+  <!-- RxJS hot observable converted to signal -->
+  <p>Message: {{ messageSig() }}</p>
+
+  <button
+    class="bg-indigo-600 text-white px-4 py-2 rounded"
+    (click)="addItem()"
+  >
+    Add Item
+  </button>
+
+  <!-- Control flow syntax -->
+  @if (cart.items().length > 0) {
+  <ul class="list-disc pl-5 mt-4">
+    @for (i of cart.items(); track i.id) {
+    <li>{{ i.name }} - ${{ i.price }}</li>
+    }
+  </ul>
+  }
+
+  <!-- Modal demo -->
+  <app-modal #m>
+    <h2 header>Confirm Action</h2>
+    Are you sure you want to proceed?
+    <div footer>
+      <button class="px-3 py-1 border rounded" (click)="m.close()">
+        Cancel
+      </button>
+      <button
+        class="px-3 py-1 bg-green-600 text-white rounded"
+        (click)="m.close()"
+      >
+        OK
+      </button>
+    </div>
+  </app-modal>
+
+  <button
+    class="mt-4 px-4 py-2 bg-gray-700 text-white rounded"
+    (click)="m.show()"
+  >
+    Open Modal
+  </button>
+</div>
