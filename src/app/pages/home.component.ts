@@ -20,4 +20,8 @@ export class HomeComponent {
   addItem() {
     this.cart.add({ id: Date.now(), name: "Item", price: 10 });
   }
+
+  removeItem(id: number) {
+    this.cart.remove(id);
+  }
 }

@@ -22,6 +22,11 @@ export class CartStore {
   add(item: Item) {
     this.items.update((list) => [...list, item]);
   }
+
+  remove(id: number) {
+    this.items.update((items) => items.filter((i) => i.id !== id));
+  }
+
   setMessage(msg: string) {
     this.msgSubject.next(msg);
   }

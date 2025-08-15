@@ -21,6 +21,19 @@
     Add Item
   </button>
 
+  <div class="space-y-4">
+    <button class="btn btn-primary" (click)="addItem()">Add Item</button>
+
+    <ul>
+      <li *ngFor="let item of cart.items()">
+        {{ item.name }} - {{ item.price | currency }}
+        <button class="btn btn-error" (click)="removeItem(item.id)">
+          Remove
+        </button>
+      </li>
+    </ul>
+  </div>
+
   <!-- Control flow syntax -->
   @if (cart.items().length > 0) {
   <ul class="list-disc pl-5 mt-4">
